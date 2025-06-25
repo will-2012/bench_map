@@ -100,14 +100,14 @@ func bench_new_map() {
 	map_ := newmap.NewHashTable(1000000, 80, hasher.AddrHash)
 	start := time.Now()
 	for _, addr := range init_in_slice {
-		map_.Set(addr.String(), true)
+		map_.Set(string(addr[:]), true)
 	}
 	for _, addr := range init_notin_slice {
-		v := map_.Get(addr.String())
+		v := map_.Get(string(addr[:]))
 		_ = v
 	}
 	for _, addr := range init_in_slice {
-		v := map_.Get(addr.String())
+		v := map_.Get(string(addr[:]))
 		_ = v
 	}
 	elapsed := time.Since(start)
